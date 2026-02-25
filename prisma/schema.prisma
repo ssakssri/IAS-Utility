@@ -1,0 +1,54 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model TenantConfig {
+  id                    String    @id @default(cuid())
+  name                  String    @unique
+  tenantUrl             String
+  clientId              String
+  clientSecretEncrypted String
+  encryptionIv          String
+  encryptionTag         String
+  authType              String    @default("basic")
+  isActive              Boolean   @default(false)
+  connectionStatus      String    @default("unknown")
+  lastTestedAt          DateTime?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  @@index([isActive])
+}
+
+model AuditLog {
+  id             String   @id @default(cuid())
+  adminEmail     String
+  action         String
+  targetUserId   String
+  targetUserName String
+  status         String   @default("PENDING")
+  errorMessage   String?
+  metadata       String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([adminEmail])
+  @@index([targetUserId])
+  @@index([createdAt])
+}
+
+model AdminUser {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  passwordHash String
+  name         String
+  role         String    @default("ADMIN")
+  active       Boolean   @default(true)
+  createdAt    DateTime  @default(now())
+  lastLoginAt  DateTime?
+}

@@ -1,0 +1,59 @@
+# ===========================
+# 환경변수 & 민감정보 (절대 커밋 금지)
+# ===========================
+.env
+.env.local
+.env.*.local
+.env.development
+.env.production
+.env.staging
+
+# ===========================
+# 데이터베이스
+# ===========================
+prisma/dev.db
+prisma/dev.db-journal
+prisma/*.db
+prisma/*.db-shm
+prisma/*.db-wal
+*.sqlite
+*.sqlite3
+
+# ===========================
+# Next.js 빌드 산출물
+# ===========================
+.next/
+out/
+
+# ===========================
+# Node.js
+# ===========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ===========================
+# TypeScript 캐시
+# ===========================
+tsconfig.tsbuildinfo
+*.tsbuildinfo
+
+# ===========================
+# 테스트 산출물
+# ===========================
+coverage/
+playwright-report/
+test-results/
+
+# ===========================
+# 세션 & 임시 파일
+# ===========================
+session.txt
+*.log
+
+# ===========================
+# OS 파일
+# ===========================
+.DS_Store
+Thumbs.db
